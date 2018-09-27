@@ -34,13 +34,21 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/jhTest?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password:
+        password: pirate
         hikari:
             data-source-properties:
                 cachePrepStmts: true
                 prepStmtCacheSize: 250
                 prepStmtCacheSqlLimit: 2048
                 useServerPrepStmts: true
+    data:
+        mongodb:
+            uri: mongodb://localhost:27017/journey
+        elasticsearch:
+            cluster-name: elasticsearch
+            cluster-nodes: localhost:9300
+            properties:
+                transport.tcp.connect_timeout: 120s
     jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         database: MYSQL
