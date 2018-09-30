@@ -1,8 +1,10 @@
 package com.zyk.jhtest;
 
 import com.zyk.jhtest.domain.Account;
+import com.zyk.jhtest.domain.Book;
 import com.zyk.jhtest.domain.UserEntity;
 import com.zyk.jhtest.repository.AccountRepository;
+import com.zyk.jhtest.repository.BookRepository;
 import com.zyk.jhtest.repository.UserEntityRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,6 +15,8 @@ import org.springframework.boot.autoconfigure.mongo.MongoProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.ZonedDateTime;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = JhTestApp.class)
 public class ApplicationTests {
@@ -21,6 +25,8 @@ public class ApplicationTests {
     private UserEntityRepository userEntityRepository;
     @Autowired
     private AccountRepository accountRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
     @Before
     public void setUp() {
@@ -45,14 +51,18 @@ public class ApplicationTests {
         u = userEntityRepository.findByUsername("mama");
         userEntityRepository.delete(u);
         Assert.assertEquals(1, userEntityRepository.findAll().size());
-
     }
-
 
     @Test
     public void testAccount(){
         MongoProperties mongoProperties;
         accountRepository.save(new Account(1l, "zyk", "zyk"));
         System.out.println("-------------------------------------------------------------------");
+    }
+
+    @Test
+    public void testBook() {
+        Book book = new Book();
+        bookRepository.save(book);
     }
 }

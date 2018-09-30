@@ -21,10 +21,15 @@ spring:
         type: simple
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:jhTest;DB_CLOSE_DELAY=-1
-        name:
-        username:
-        password:
+        url: jdbc:mysql://localhost:3306/jhtest?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: root
+        hikari:
+            data-source-properties:
+                cachePrepStmts: true
+                prepStmtCacheSize: 250
+                prepStmtCacheSqlLimit: 2048
+                useServerPrepStmts: true
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedH2Dialect
         database: H2
@@ -49,6 +54,11 @@ spring:
             cluster-nodes: localhost:9300
             properties:
                 transport.tcp.connect_timeout: 120s
+    redis:
+        database: 0
+        host: localhost
+        port: 6379
+        password:
     liquibase:
         contexts: test
     mail:
